@@ -6,11 +6,14 @@
 package magasinonline;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -31,11 +34,55 @@ public class Client implements Serializable {
     
    @Embedded
     private Adresse adresse;
+   
+   @OneToMany(mappedBy = "client")
+    //init obligatoire pour liste
+    private List<Commande> commandes= new ArrayList<>();
     
     
 
     public Long getId() {
         return id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getMdp() {
+        return mdp;
+    }
+
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Adresse getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
+    }
+
+    public List<Commande> getClients() {
+        return commandes;
+    }
+
+    public void setClients(List<Commande> clients) {
+        this.commandes = clients;
     }
 
     public void setId(Long id) {
