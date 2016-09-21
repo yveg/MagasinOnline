@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import magasinonline.Categorie;
+import magasinonline.Produit;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -24,13 +25,34 @@ public class Magasintest {
         //ici on fait des modifications sur les data.      
         em.getTransaction().begin();
         Categorie c1 = new Categorie();
-        c1.setNom("Chaussure à talons");
         
+        c1.setNom("Sneaker");        
         //on insert dans l'objet
         em.persist(c1);
+        
+        Categorie c2 = new Categorie();
+        c1.setNom("Lunette de soleil");        
+        //on insert dans l'objet
+        em.persist(c2);
+        
+        Produit rayban = new Produit();
+        rayban.setCategorie(c2);
+        em.persist(rayban);
+        
         //apres on commit 
         em.getTransaction().commit();
 
+    }
+    @Test
+    public void ListeprodcategoritTest() {
+        EntityManager em = Persistence.createEntityManagerFactory("MagasinOnlinePU").createEntityManager();
+        
+        Categorie caty = em.find(Categorie.class, 52L); //suffixer avec L la valeur 
+        //System.out.println(caty.getProduits());
+        for(Produit p: caty.getProduits()) {
+            System.out.println(p);
+        }
+        
     }
 
 }
