@@ -82,6 +82,6 @@ public class Magasintest {
         for(Commande c: cl.getCommande()) {
         System.out(println(c);
         }
-    }
-*/
+    */ }
+
 }
