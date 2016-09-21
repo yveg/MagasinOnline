@@ -14,6 +14,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -32,6 +34,70 @@ public class Commande implements Serializable {
 //ajout
     private String moy2paie;
     private Integer somme;
+
+    public String getMoy2paie() {
+        return moy2paie;
+    }
+
+    public void setMoy2paie(String moy2paie) {
+        this.moy2paie = moy2paie;
+    }
+
+    public Integer getSomme() {
+        return somme;
+    }
+
+    public void setSomme(Integer somme) {
+        this.somme = somme;
+    }
+
+    public String getMode2livraison() {
+        return mode2livraison;
+    }
+
+    public void setMode2livraison(String mode2livraison) {
+        this.mode2livraison = mode2livraison;
+    }
+
+    public Integer getFrais2port() {
+        return frais2port;
+    }
+
+    public void setFrais2port(Integer frais2port) {
+        this.frais2port = frais2port;
+    }
+
+    public Date getDate2commande() {
+        return date2commande;
+    }
+
+    public void setDate2commande(Date date2commande) {
+        this.date2commande = date2commande;
+    }
+
+    public Date getDate2livraison() {
+        return date2livraison;
+    }
+
+    public void setDate2livraison(Date date2livraison) {
+        this.date2livraison = date2livraison;
+    }
+
+    public Statutc getStatut() {
+        return statut;
+    }
+
+    public void setStatut(Statutc statut) {
+        this.statut = statut;
+    }
+
+    public Adresse getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
+    }
     private String mode2livraison;
     private Integer frais2port;
     @Temporal(TemporalType.TIMESTAMP)
@@ -48,6 +114,19 @@ public class Commande implements Serializable {
         encours,
         terminé,
         payé
+    }
+    
+    @ManyToOne
+    //ajouter une colonne categorie_id dans Produit
+    @JoinColumn(name = "client_id")//cree la cle etrangere
+    private Client client;
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public Long getId() {
